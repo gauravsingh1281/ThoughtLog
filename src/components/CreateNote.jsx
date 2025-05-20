@@ -1,23 +1,46 @@
 import { nanoid } from "nanoid";
 import { IoMdAdd } from "react-icons/io";
+import { LiaTimesSolid } from "react-icons/lia";
 export default function CreateNote({
   title,
   onSetTitle,
   description,
   onSetDescription,
+  notes,
   onSetNotes,
   toast,
+  editNote,
+  onSetEditNote,
 }) {
   const handleSubmit = (e) => {
-    const uniqueId = nanoid();
     e.preventDefault();
     if (!title || !description) {
       return toast.error("Please fill all the fields");
     }
-    onSetNotes((prevNote) => [...prevNote, { uniqueId, title, description }]);
-    toast.success("Thought successfully created!");
+    if (editNote) {
+      const updatedNotes = notes.map((note) =>
+        note.uniqueId === editNote.uniqueId
+          ? { ...note, title, description }
+          : note
+      );
+      onSetNotes(updatedNotes);
+      toast.success("Thought successfully updated!");
+      onSetEditNote(null);
+    } else {
+      const uniqueId = nanoid();
+      onSetNotes((prevNote) => [...prevNote, { uniqueId, title, description }]);
+      toast.success("Thought successfully created!");
+    }
+
     onSetTitle("");
     onSetDescription("");
+  };
+
+  const handleCancelEdit = () => {
+    onSetEditNote(null);
+    onSetTitle("");
+    onSetDescription("");
+    toast.info("Update cancelled.");
   };
 
   return (
@@ -38,9 +61,22 @@ export default function CreateNote({
         value={description}
         onChange={(e) => onSetDescription(e.target.value)}
       ></textarea>
-      <button className="w-[40px] h-[40px] bg-black rounded-full flex justify-center items-center cursor-pointer active:scale-[92%] transition-all ease-in duration-200">
-        <IoMdAdd className="text-white" />
-      </button>
+      <div className="flex justify-center items-center gap-3">
+        <button
+          type="submit"
+          className="w-[40px] h-[40px] bg-black rounded-full flex justify-center items-center cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
+        >
+          <IoMdAdd className="text-white font-bold text-2xl" />
+        </button>
+        {editNote && (
+          <button
+            type="button"
+            className="w-[40px] h-[40px] bg-black rounded-full flex justify-center items-center cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
+          >
+            <LiaTimesSolid className="text-white font-bold text-2xl" />
+          </button>
+        )}
+      </div>
     </form>
   );
 }
