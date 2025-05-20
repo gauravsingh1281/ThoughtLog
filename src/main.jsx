@@ -2,12 +2,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
-import NoteContext from "./components/context/NoteContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/* <NoteContext> */}
     <App />
-    {/* </NoteContext> */}
   </StrictMode>
 );
