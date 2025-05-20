@@ -1,9 +1,9 @@
+import { useState } from "react";
+import Main from "./components/Main";
 function App() {
-  return (
-    <>
-      <h1 className="bg-red-200">ThoughtLog</h1>
-    </>
-  );
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  return <Main />;
 }
 
 export default App;
