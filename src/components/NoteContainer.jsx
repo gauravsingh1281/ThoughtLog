@@ -2,9 +2,7 @@ import { MdOutlineDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
 
 export default function NoteContainer({
-  title,
   onSetTitle,
-  description,
   onSetDescription,
   notes,
   onSetNotes,

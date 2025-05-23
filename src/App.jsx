@@ -25,9 +25,7 @@ function App() {
         onSetEditNote={setEditNote}
       />
       <NoteContainer
-        title={title}
         onSetTitle={setTitle}
-        description={description}
         onSetDescription={setDescription}
         notes={notes}
         onSetNotes={setNotes}
