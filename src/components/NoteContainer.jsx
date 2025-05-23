@@ -40,6 +40,12 @@ export default function NoteContainer({
                 : "bg-amber-400"
             }`}
           >
+            <div className="flex justify-between items-center ">
+              <div>
+                <p>{note.editStatus ? "Edited" : ""}</p>
+              </div>
+            </div>
+
             <div className="overflow-y-auto mb-2 flex-1 scrollbar-none">
               <h1 className="break-words font-bold">{note.title}</h1>
               <p className="break-words">{note.description}</p>

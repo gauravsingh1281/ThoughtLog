@@ -20,7 +20,7 @@ export default function CreateNote({
     if (editNote) {
       const updatedNotes = notes.map((note) =>
         note.uniqueId === editNote.uniqueId
-          ? { ...note, title, description }
+          ? { ...note, title, description, editStatus: true }
           : note
       );
       onSetNotes(updatedNotes);
@@ -28,14 +28,18 @@ export default function CreateNote({
       onSetEditNote(null);
     } else {
       const uniqueId = nanoid();
-      onSetNotes((prevNote) => [...prevNote, { uniqueId, title, description }]);
+      const editStatus = false;
+      onSetNotes((prevNote) => [
+        ...prevNote,
+        { uniqueId, title, description, editStatus },
+      ]);
       toast.success("Thought successfully created!");
     }
 
     onSetTitle("");
     onSetDescription("");
   };
-
+  console.log(notes);
   const handleCancelEdit = () => {
     onSetEditNote(null);
     onSetTitle("");
