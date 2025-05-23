@@ -41,13 +41,23 @@ export default function NoteContainer({
             }`}
           >
             <div className="flex justify-between items-center ">
-              <div>
-                <p>{note.editStatus ? "Edited" : ""}</p>
+              <div className="flex justify-center items-center gap-2">
+                <h2 className="break-words font-bold">{note.title}</h2>
+                {note.editStatus && (
+                  <p className="text-[12px] px-[5px] py-[2px] rounded-lg bg-lime-200 text-black">
+                    Edited
+                  </p>
+                )}
               </div>
+              <p>X</p>
             </div>
-
+            <div className="flex justify-start items-center ">
+              <p>Last update:12 Dec,2018</p>
+            </div>
+            {/* Line */}
+            <div className="h-[2px] w-full bg-red-500"></div>
+            {/* Description */}
             <div className="overflow-y-auto mb-2 flex-1 scrollbar-none">
-              <h1 className="break-words font-bold">{note.title}</h1>
               <p className="break-words">{note.description}</p>
             </div>
 
