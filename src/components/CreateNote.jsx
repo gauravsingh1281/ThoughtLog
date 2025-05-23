@@ -70,6 +70,7 @@ export default function CreateNote({
         </button>
         {editNote && (
           <button
+            onClick={handleCancelEdit}
             type="button"
             className="w-[40px] h-[40px] bg-black rounded-full flex justify-center items-center cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
           >
