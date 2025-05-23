@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid";
 import { IoMdAdd } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
+import { FaCheck } from "react-icons/fa6";
+import { Tooltip } from "react-tooltip";
 export default function CreateNote({
   title,
   onSetTitle,
@@ -44,8 +46,8 @@ export default function CreateNote({
     onSetEditNote(null);
     onSetTitle("");
     onSetDescription("");
-    toast.info("Update cancelled.");
   };
+  const isEditing = editNote?.uniqueId === notes.uniqueId;
 
   return (
     <form
@@ -67,13 +69,24 @@ export default function CreateNote({
       ></textarea>
       <div className="flex justify-center items-center gap-3">
         <button
+          data-tooltip-id="create-note"
+          data-tooltip-content={`${isEditing ? "Create Note" : "Update Note"}`}
+          data-tooltip-place="top"
           type="submit"
           className="w-[40px] h-[40px] bg-black rounded-full flex justify-center items-center cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
         >
-          <IoMdAdd className="text-white font-bold text-2xl" />
+          {isEditing ? (
+            <IoMdAdd className="text-white font-bold text-2xl" />
+          ) : (
+            <FaCheck className="text-white font-bold text-2xl" />
+          )}
         </button>
+        <Tooltip id="create-note" style={{ padding: "6px 8px" }} />
         {editNote && (
           <button
+            data-tooltip-id="cancel-update"
+            data-tooltip-content="Cancel Update"
+            data-tooltip-place="top"
             onClick={handleCancelEdit}
             type="button"
             className="w-[40px] h-[40px] bg-black rounded-full flex justify-center items-center cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
@@ -81,6 +94,7 @@ export default function CreateNote({
             <LiaTimesSolid className="text-white font-bold text-2xl" />
           </button>
         )}
+        <Tooltip id="cancel-update" style={{ padding: "6px 8px" }} />
       </div>
     </form>
   );

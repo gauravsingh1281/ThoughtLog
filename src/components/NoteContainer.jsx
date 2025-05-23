@@ -33,7 +33,7 @@ export default function NoteContainer({
         return (
           <div
             key={note.uniqueId}
-            className={`w-[280px] h-[200px] p-3 rounded-lg flex flex-col justify-between transition-all duration-200 shadow-lg ${
+            className={`w-[280px] h-[220px] p-3 rounded-lg flex flex-col justify-between transition-all duration-200 shadow-lg ${
               isEditing ? "bg-white border-2 border-red-500" : "bg-white"
             }`}
           >
@@ -61,22 +61,26 @@ export default function NoteContainer({
 
             <div className="flex justify-center items-center gap-1">
               <button
-                data-tooltip-id="edit-tooltip"
-                data-tooltip-content="Edit Note"
+                data-tooltip-id="edit-note"
+                data-tooltip-content="Edit"
                 data-tooltip-place="top"
                 onClick={() => handleEdit(note)}
-                className="w-[28px] h-[28px] flex justify-center items-center bg-yellow-200 rounded-lg cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
+                className="w-[30px] h-[30px] flex justify-center items-center bg-yellow-200 rounded-lg cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
               >
                 <MdEdit />
               </button>
-              <Tooltip id="edit-tooltip" />
+              <Tooltip id="edit-note" style={{ padding: "6px 8px" }} />
               <button
+                data-tooltip-id="delete-note"
+                data-tooltip-content="Delete"
+                data-tooltip-place="top"
                 type="button"
                 onClick={() => handleDelete(note.uniqueId)}
-                className="w-[28px] h-[28px] flex justify-center items-center bg-red-200 rounded-lg cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
+                className="w-[30px] h-[30px] flex justify-center items-center bg-red-200 rounded-lg cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
               >
                 <MdOutlineDelete />
               </button>
+              <Tooltip id="delete-note" style={{ padding: "6px 8px" }} />
             </div>
           </div>
         );
