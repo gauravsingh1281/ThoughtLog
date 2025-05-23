@@ -55,12 +55,12 @@ export default function CreateNote({
       <input
         type="text"
         placeholder="Title"
-        className="w-[330px] p-2 text-lg rounded-md border-1"
+        className="w-[330px] p-2 text-lg rounded-md border-1 outline-0"
         value={title}
         onChange={(e) => onSetTitle(e.target.value)}
       />
       <textarea
-        className=" w-[330px] min-h-[120px] rounded-md  p-2 text-lg border-1 "
+        className=" w-[330px] min-h-[120px] rounded-md  p-2 text-lg border-1 outline-0"
         placeholder="Write your thought here!"
         value={description}
         onChange={(e) => onSetDescription(e.target.value)}
