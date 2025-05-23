@@ -1,5 +1,6 @@
 import { MdOutlineDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 export default function NoteContainer({
   onSetTitle,
@@ -60,11 +61,15 @@ export default function NoteContainer({
 
             <div className="flex justify-center items-center gap-1">
               <button
+                data-tooltip-id="edit-tooltip"
+                data-tooltip-content="Edit Note"
+                data-tooltip-place="top"
                 onClick={() => handleEdit(note)}
                 className="w-[28px] h-[28px] flex justify-center items-center bg-yellow-200 rounded-lg cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
               >
                 <MdEdit />
               </button>
+              <Tooltip id="edit-tooltip" />
               <button
                 type="button"
                 onClick={() => handleDelete(note.uniqueId)}
