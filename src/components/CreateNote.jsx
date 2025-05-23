@@ -56,7 +56,7 @@ export default function CreateNote({
   }
   return (
     <form
-      className="w-full h-full flex justify-center items-center flex-col gap-2 mt-2"
+      className="w-full h-full flex justify-center items-center flex-col gap-2 my-4"
       onSubmit={handleSubmit}
     >
       <input
@@ -78,10 +78,12 @@ export default function CreateNote({
           onSetDescription(toMultiSentenceCase(value));
         }}
       ></textarea>
-      <div className="flex justify-center items-center gap-3">
+      <div className="flex justify-center items-center gap-3 mt-2">
         <button
-          data-tooltip-id="create-note"
-          data-tooltip-content={`${isEditing ? "Create Note" : "Update Note"}`}
+          data-tooltip-id="add-thought"
+          data-tooltip-content={`${
+            isEditing ? "Add Thought" : "Update Thought"
+          }`}
           data-tooltip-place="top"
           type="submit"
           className="w-[40px] h-[40px] bg-black rounded-full flex justify-center items-center cursor-pointer active:scale-[92%] transition-all ease-in duration-200"
@@ -92,7 +94,7 @@ export default function CreateNote({
             <FaCheck className="text-white font-bold text-2xl" />
           )}
         </button>
-        <Tooltip id="create-note" style={{ padding: "6px 8px" }} />
+        <Tooltip id="add-thought" style={{ padding: "6px 8px" }} />
         {editNote && (
           <button
             data-tooltip-id="cancel-update"
