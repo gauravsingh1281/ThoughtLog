@@ -48,7 +48,12 @@ export default function CreateNote({
     onSetDescription("");
   };
   const isEditing = editNote?.uniqueId === notes.uniqueId;
-
+  function toMultiSentenceCase(str) {
+    if (!str) return "";
+    return str
+      .toLowerCase()
+      .replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase());
+  }
   return (
     <form
       className="w-full h-full flex justify-center items-center flex-col gap-2 mt-2"
@@ -59,13 +64,19 @@ export default function CreateNote({
         placeholder="Title"
         className="w-[330px] p-2 text-lg rounded-md border-1 outline-0"
         value={title}
-        onChange={(e) => onSetTitle(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          onSetTitle(toMultiSentenceCase(value));
+        }}
       />
       <textarea
         className=" w-[330px] min-h-[120px] rounded-md  p-2 text-lg border-1 outline-0"
         placeholder="Write your thought here!"
         value={description}
-        onChange={(e) => onSetDescription(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          onSetDescription(toMultiSentenceCase(value));
+        }}
       ></textarea>
       <div className="flex justify-center items-center gap-3">
         <button

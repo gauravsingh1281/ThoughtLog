@@ -38,9 +38,7 @@ export default function NoteContainer({
             }`}
           >
             <div className="flex justify-between items-center ">
-              <h2 className="break-words font-medium capitalize">
-                {note.title}
-              </h2>
+              <h2 className="break-words font-medium">{note.title}</h2>
               <p>
                 {note.editStatus && (
                   <p className="text-[12px] px-[6px] py-[2px] rounded-lg bg-lime-400 text-black">
@@ -59,7 +57,7 @@ export default function NoteContainer({
               <p className="break-words font-normal">{note.description}</p>
             </div>
 
-            <div className="flex justify-center items-center gap-1">
+            <div className="flex justify-center items-center gap-3">
               <button
                 data-tooltip-id="edit-note"
                 data-tooltip-content="Edit"
