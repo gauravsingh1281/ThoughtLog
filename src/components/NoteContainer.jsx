@@ -26,7 +26,7 @@ export default function NoteContainer() {
   };
 
   return (
-    <div className="p-4 flex justify-start gap-5 items-start flex-wrap">
+    <div className="p-4 flex justify-center gap-5 items-start flex-wrap w-full ">
       {notes.map((note) => {
         const isEditing = editNote?.uniqueId === note.uniqueId;
         return (
