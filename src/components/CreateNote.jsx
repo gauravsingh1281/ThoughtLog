@@ -3,17 +3,20 @@ import { IoMdAdd } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
 import { FaCheck } from "react-icons/fa6";
 import { Tooltip } from "react-tooltip";
-export default function CreateNote({
-  title,
-  onSetTitle,
-  description,
-  onSetDescription,
-  notes,
-  onSetNotes,
-  toast,
-  editNote,
-  onSetEditNote,
-}) {
+import { useContext } from "react";
+import { NoteDataProvider } from "../context/NoteContext";
+import { toast } from "react-toastify";
+export default function CreateNote() {
+  const {
+    notes,
+    setNotes,
+    title,
+    setTitle,
+    description,
+    setDescription,
+    editNote,
+    setEditNote,
+  } = useContext(NoteDataProvider);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !description) {
@@ -25,27 +28,27 @@ export default function CreateNote({
           ? { ...note, title, description, editStatus: true }
           : note
       );
-      onSetNotes(updatedNotes);
+      setNotes(updatedNotes);
       toast.success("Thought successfully updated!");
-      onSetEditNote(null);
+      setEditNote(null);
     } else {
       const uniqueId = nanoid();
       const editStatus = false;
-      onSetNotes((prevNote) => [
+      setNotes((prevNote) => [
         ...prevNote,
         { uniqueId, title, description, editStatus },
       ]);
       toast.success("Thought successfully created!");
     }
 
-    onSetTitle("");
-    onSetDescription("");
+    setTitle("");
+    setDescription("");
   };
   console.log(notes);
   const handleCancelEdit = () => {
-    onSetEditNote(null);
-    onSetTitle("");
-    onSetDescription("");
+    setEditNote(null);
+    setTitle("");
+    setDescription("");
   };
   const isEditing = editNote?.uniqueId === notes.uniqueId;
   function toMultiSentenceCase(str) {
@@ -66,7 +69,7 @@ export default function CreateNote({
         value={title}
         onChange={(e) => {
           const value = e.target.value;
-          onSetTitle(toMultiSentenceCase(value));
+          setTitle(toMultiSentenceCase(value));
         }}
       />
       <textarea
@@ -75,7 +78,7 @@ export default function CreateNote({
         value={description}
         onChange={(e) => {
           const value = e.target.value;
-          onSetDescription(toMultiSentenceCase(value));
+          setDescription(toMultiSentenceCase(value));
         }}
       ></textarea>
       <div className="flex justify-center items-center gap-3 mt-2">

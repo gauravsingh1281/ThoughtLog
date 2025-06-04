@@ -1,29 +1,26 @@
+import { useContext } from "react";
 import { MdOutlineDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
+import { NoteDataProvider } from "../context/NoteContext";
 
-export default function NoteContainer({
-  onSetTitle,
-  onSetDescription,
-  notes,
-  onSetNotes,
-  editNote,
-  onSetEditNote,
-}) {
+export default function NoteContainer() {
+  const { setTitle, setDescription, notes, setNotes, editNote, setEditNote } =
+    useContext(NoteDataProvider);
   const handleDelete = (id) => {
     toast.success("Thought successfully deleted!");
-    onSetNotes(notes.filter((note) => note.uniqueId !== id));
+    setNotes(notes.filter((note) => note.uniqueId !== id));
     if (editNote?.uniqueId === id) {
-      onSetEditNote(null);
-      onSetTitle("");
-      onSetDescription("");
+      setEditNote(null);
+      setTitle("");
+      setDescription("");
     }
   };
 
   const handleEdit = (note) => {
-    onSetEditNote(note);
-    onSetTitle(note.title);
-    onSetDescription(note.description);
+    setEditNote(note);
+    setTitle(note.title);
+    setDescription(note.description);
   };
 
   return (
