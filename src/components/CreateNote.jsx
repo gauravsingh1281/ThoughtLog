@@ -6,6 +6,7 @@ import { Tooltip } from "react-tooltip";
 import { useContext } from "react";
 import { NoteDataProvider } from "../context/NoteContext";
 import { toast } from "react-toastify";
+
 export default function CreateNote() {
   const {
     notes,
@@ -22,21 +23,30 @@ export default function CreateNote() {
     if (!title || !description) {
       return toast.error("Please fill all the fields");
     }
+    // handle edit thought
     if (editNote) {
       const updatedNotes = notes.map((note) =>
         note.uniqueId === editNote.uniqueId
-          ? { ...note, title, description, editStatus: true }
+          ? {
+              ...note,
+              title,
+              description,
+              editStatus: true,
+              lastUpdateTimeStamp: new Date().toLocaleString(),
+            }
           : note
       );
       setNotes(updatedNotes);
       toast.success("Thought successfully updated!");
       setEditNote(null);
     } else {
+      // handle new thought creation
       const uniqueId = nanoid();
       const editStatus = false;
+      const lastUpdateTimeStamp = new Date().toLocaleString();
       setNotes((prevNote) => [
         ...prevNote,
-        { uniqueId, title, description, editStatus },
+        { uniqueId, title, description, editStatus, lastUpdateTimeStamp },
       ]);
       toast.success("Thought successfully created!");
     }
@@ -45,6 +55,8 @@ export default function CreateNote() {
     setDescription("");
   };
   console.log(notes);
+
+  //handle cancel edit
   const handleCancelEdit = () => {
     setEditNote(null);
     setTitle("");

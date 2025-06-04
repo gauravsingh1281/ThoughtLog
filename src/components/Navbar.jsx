@@ -1,5 +1,5 @@
 import { IoSearchSharp } from "react-icons/io5";
-import { IoMdInformationCircleOutline, IoMdAdd } from "react-icons/io";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 export default function Navbar() {
   return (
