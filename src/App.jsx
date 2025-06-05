@@ -1,17 +1,6 @@
-import Main from "./components/Main";
-import CreateNote from "./components/CreateNote";
-import NoteContainer from "./components/NoteContainer";
-import Navbar from "./components/Navbar";
-import { ToastContainer } from "react-toastify";
+import MainRoute from "./routes/MainRoute";
 function App() {
-  return (
-    <Main>
-      <Navbar />
-      <CreateNote />
-      <NoteContainer />
-      <ToastContainer />
-    </Main>
-  );
+  return <MainRoute />;
 }
 
 export default App;
