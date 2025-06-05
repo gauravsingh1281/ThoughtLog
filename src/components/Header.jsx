@@ -5,12 +5,27 @@ export default function Header() {
   const navigate = useNavigate();
   return (
     <header>
-      <nav className="flex justify-between items-center bg-white4 py-4 px-4 md:px-10 lg:px-10 font-Inter">
+      <nav className="flex justify-between items-center bg-white4 py-5 px-4 md:px-10 lg:px-10 font-Inter">
         <img className="w-[240px]" src={logo} alt="logo" />
         <div className="hidden lg:flex justify-center items-center gap-10 text-xl">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/aboutus">About</NavLink>
-          <NavLink to="contactus">Contact Us</NavLink>
+          <NavLink
+            className={(e) => (e.isActive ? "text-[#F5418D] font-bold" : "")}
+            to="/"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className={(e) => (e.isActive ? "text-[#F5418D] font-bold" : "")}
+            to="aboutUs"
+          >
+            About
+          </NavLink>
+          <NavLink
+            className={(e) => (e.isActive ? "text-[#F5418D] font-bold" : "")}
+            to="contactUs"
+          >
+            Contact Us
+          </NavLink>
         </div>
         <div className="hidden lg:flex items-center justify-center gap-6">
           <button
