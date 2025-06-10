@@ -1,19 +1,25 @@
-import { Route, Routes } from "react-router";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router";
 import Home from "../pages/Home";
-import MainLayout from "../components/Layout/MainLayout";
 import CreateNote from "../components/CreateNote";
 import About from "../pages/About";
 import ContactUs from "../pages/ContactUs";
+import RootLayout from "../layout/RootLayout";
 
-export default function MainRoute() {
-  return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
+export default function RootRoute() {
+  const rootRouter = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
         <Route index element={<Home />} />
         <Route path="aboutUs" element={<About />} />
         <Route path="contactUs" element={<ContactUs />} />
         <Route path="createThought" element={<CreateNote />} />
       </Route>
-    </Routes>
+    )
   );
+  return <RouterProvider router={rootRouter} />;
 }
